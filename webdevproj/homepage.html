@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cars Garage - Home </title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img class="logo" src="image\car.png"> 
+        <h1> Cars Garage </h1>
+        <p> Your one stop shop </p>
+    </header>
+
+    <nav>
+        <ul>
+            <b>
+            <a href="homepage.html"> Home </a>
+            <a href="product.html"> Product </a>
+            <a href="contact.html"> Contact Us </a>
+            <a href="about_us.html"> About Us </a>
+            <a href="addtocart.html"> Add to Cart </a>
+            <a href="registration.html"> Registration </a></li>
+            </b>
+        </ul>
+    </nav>
+    <h2> Welcome to Cars Garage </h2>
+
+    <div class="slider-container">
+        <!-- Slides -->
+        <div class="slide">
+            <img src="image\volkswagen.jpg" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="image\porsche.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="image\lambo.jpg" alt="Slide 3">
+        </div>
+        <div class="slide">
+            <img src="image\ferraru.jpg" alt="Slide 4">
+        </div>
+        <div class="slide">
+            <img src="image\bmw.jpg" alt="Slide 5">
+        </div>
+        <div class="slide">
+
+            <img src="image\bugatti.jfif" alt="Slide 6" id="slide6">
+        </div>
+        <!-- Navigation buttons -->
+        <div class="prev" onclick="plusSlides(-1)">❮ Previous</div>
+        <div class="next" onclick="plusSlides(1)">Next ❯</div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+    
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+
+    <footer style="position: bottom;">
+        <p>&copy; 2024 Cars Garage | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

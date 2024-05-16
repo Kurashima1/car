@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars Garage</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <img class="logo" src="image\car.png"> 
+        <h1> Cars Garage </h1>
+        <p> Your one stop shop </p>
+    </header>
+
+    <nav>
+        <ul>
+            <b>
+            <a href="homepage.html"> Home </a>
+            <a href="product.html"> Product </a>
+            <a href="contact.html"> Contact Us </a>
+            <a href="about_us.html"> About Us </a>
+            <a href="addtocart.html"> Add to Cart </a>
+            <a href="registration.html"> Registration </a></li>
+            </b>
+        </ul>
+    </nav>
+
+
+    <section id="appointment">
+        <h2>Fill up the Form</h2>
+        <form action="appointment_confirmation.html" method="post">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="service">City: </label>
+            <select id="service" name="service" required onchange="updatePrice()">
+                <option value="Davao">Davao City</option>
+                <option value="Manila">Manila</option>
+                <option value="Palayan">Palayan City</option>
+                <option value="Quezon">Quezon City</option>                
+                <option value="Zamboanga">Zamboanga</option>
+                <option value="Antipolo">Antipolo </option>
+                <option value="Cagayan de Oro">Cagayan de Oro</option>
+                <option value="Baguio">Baguio</option>                
+                <option value="Pasig">Pasig</option>
+                <option value="Tarlac">Tarlac City</option>
+                <option value="Bayawan">Bayawan City</option>
+                <option value="Himamaylan City">Himamaylan City</option>             
+                <option value="Gapan City">Gapan City</option>
+                <option value="Cabadbaran City">Cabadbaran City</option>
+                <option value="Bayugan City">Bayugan City</option>
+                <option value="Ilagan">Ilagan</option>
+                <option value="Cavite City">Cavite City</option>
+                <option value="Tagaytay">Tagaytay</option>
+                <option value="Batac">Batac</option>
+                <option value="Gingoog">Gingoog</option>                
+                <option value="Vigan City">Vigan City</option>
+                <option value="Legazpi City">Legazpi City </option>
+                <option value="Dumaguete">Dumaguete</option>
+                <option value="Lamitan City">Lamitan City</option>                
+                <option value="Talisay">Talisay</option>
+                <option value="Tagbilaran City">Tagbilaran City</option>
+                <option value="Danao City">Danao City</option>
+                <option value="Caloocan">Caloocan</option>             
+                <option value="San Fernando">San Fernando</option>
+                <option value="Carcar City">Carcar City</option>
+                <option value="Butuan City">Butuan City</option>
+                <option value="Taguig">Taguig</option>
+                <option value="Pasay">Pasay</option>
+                <option value="Bacolod">Bacolod</option>
+                <option value="Isabela City">Isabela City</option>
+                <option value="Calamba">Calamba</option>                
+                <option value="Navotas">Navotas</option>
+                <option value="Makati">Makati </option>
+                <option value="Dasmariñas">Dasmariñas</option>
+                <option value="Bacoor">Bacoor</option>                
+                <option value="San Pedro">San Pedro</option>
+                <option value="Escalante City">Escalante City</option>
+                <option value="Valenzuela">Valenzuela</option>
+                <option value="Cotabato City">Cotabato City</option>             
+                <option value="Passi City">Passi City</option>
+                <option value="Angeles">Angeles</option>
+                <option value="Malaybalay">Malaybalay</option>
+                <option value="Urdaneta">Urdaneta</option>
+                <option value="Maasin City">Maasin City</option>
+            </select>
+            
+            <div class="price">
+            <label for="price">Service Price:</label>
+            <span id="price"></span><br></div>
+            
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time" name="time" required>
+
+            <button type="button" onclick="submitForm()">Book Appointment</button>
+        </form>
+    </section>
+
+    <footer style="position: fixed;">
+        <p>&copy; 2024 Cars Garage | All Rights Reserved.</p>
+    </footer>
+
+    <script>
+     
+        function submitForm() {
+            // Get form values
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var service = document.getElementById('service').value;
+            var date = document.getElementById('date').value;
+            var time = document.getElementById('time').value;
+            var price = document.getElementById('price').textContent;
+
+            var receiptContent = generateReceiptContent(name, email, service, date, time, price);
+
+            // Display the receipt in a popup window
+            var receiptWindow = window.open('', '_blank', 'width=400,height=400');
+            receiptWindow.document.write('<html><head><title>Appointment Confirmation</title></head><body style="background: url(\'https://i.pinimg.com/564x/be/3c/79/be3c798f5c95fc95f852e2fd593ab9c0.jpg\') center/cover; padding: 20px;">');
+            receiptWindow.document.write('<h1 style="color: #333;">Appointment Receipt</h1>');
+            receiptWindow.document.write('<div style="background-color: #ffe5ec; padding: 20px; border-radius: 5px;">');
+            receiptWindow.document.write(receiptContent);
+            receiptWindow.document.write('<p>Thank you for booking an appointment with Glam Nail Salon. We look forward to serving you!</p>');
+            receiptWindow.document.write('</body></html>');
+            receiptWindow.document.close();
+        }
+
+        function generateReceiptContent(customerName, customerEmail, selectedService, selectedDate, selectedTime, price) {
+            // Generate receipt content here
+            const timeArray = selectedTime.split(":");
+            const hours = parseInt(timeArray[0]);
+            const minutes = timeArray[1];
+            const ampm = hours >= 12 ? "PM" : "AM";
+            const formattedHours = hours % 12 || 12;
+            var receiptContent = `
+            <p><strong>Customer Name:</strong> ${customerName}</p>
+            <p><strong>Email:</strong> ${customerEmail}</p>
+            <p><strong>Service:</strong> ${selectedService}</p>
+            <p><strong>Date:</strong> ${selectedDate}</p>
+            <p><strong>Time:</strong> ${formattedHours}:${minutes} ${ampm}</p>
+
+            `;
+            return receiptContent;
+        }
+    </script>
+
+</body>
+</html>
